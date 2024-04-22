@@ -14,7 +14,7 @@
         <nav>
             <ul class="flex-nav">
                 <li><a href="">健檢預約名單</a></li>
-                <li><a href="revise.php">預約資料修改</a></li>
+                <li><a href="">其他</a></li>
             </ul>
         </nav>
     </div>

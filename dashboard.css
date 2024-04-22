@@ -131,7 +131,7 @@ input[type="submit"] {
     padding: 10px;
     margin: 1px 0;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 10px;
     box-sizing: border-box; /* 使元素的寬度包含內邊距和邊框，而不包含外邊距 */
 }
 
