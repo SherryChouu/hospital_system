@@ -70,92 +70,14 @@ nav ul {
     text-decoration: none;
 }
 
-
-
-/*-------------------index.php系統首頁--------------- */
-box1 {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f2f2f2;
-}
-
-.login-box {
-    width: 300px;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.login-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #a1c6e4;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.login-button:hover {
-    background-color: #e2e5e8;
-}
-    
-
-
-/*-------------------login.php登入頁面--------------- */
-.login-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh; /* 設定高度為視窗高度，使登入框置中 */
-}
-
-form {
-    width: 400px; /* 設定表單寬度 */
-    padding: 50px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-label {
-    font-weight: bold;
-    text-align: center;
-}
-
-input[type="text"],
-input[type="password"],
-input[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box; /* 使元素的寬度包含內邊距和邊框，而不包含外邊距 */
-}
-
-input[type="submit"] {
-    background-color:  #a1c6e4;
-    color: white;
-    cursor: pointer;
-}
-
-
-
-
-/*----------------------------dashboard.php表格-----------------------------*/
-
+/*-------------------------表格-------------------*/
 /* 表格樣式 */
 table {
-    width: 100%;
+    width: 90%;
     border-collapse: collapse;
+    align-items: center;
+    text-align: center; /* 表格內文字置中 */
+    margin: auto; /* 表格置中 */
 }
 
 /* 表頭樣式 */
@@ -184,11 +106,50 @@ tr:hover {
 }
 
 
-/* 選擇日期功能樣式 */
+/* ----------------選擇日期功能樣式-------------- */
 .choose-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+form {
+    width: 600px; /* 設定表單寬度 */
+    padding: 20px;
+    margin-top: 80px;
+    margin-bottom: 40px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+input[type="date"],
+input[type="submit"] {
+    width: 25%;
+    padding: 10px;
+    margin: 1px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* 使元素的寬度包含內邊距和邊框，而不包含外邊距 */
+}
+
+.bt1 {
+    background-color:  #a1c6e4;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.bt1:hover{
+    background-color:  #e2e5e8; 
+}
+
+
+label {
+    font-weight: bold;
+    text-align: center;
+    align-items: center;
 }
 

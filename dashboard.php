@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
     <title>hospital</title>
 </head>
 <body>
 
 <main>       
     <div class="navbar">
-        <h1 class= "title"><a href="index.php">後台管理系統</a></h1>
+        <h1 class= "title"><a href="index.php">預約管理系統</a></h1>
         <nav>
             <ul class="flex-nav">
                 <li><a href="">健檢預約名單</a></li>
@@ -20,15 +20,16 @@
     </div>
 </main>
 
-<h1>預約資料</h1>
 
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-    <label for="date">選擇日期:</label>
-    <input type="date" id="date" name="date">
-    <input type="submit" value="查詢">
-</form>
+<div class="choose-container">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <label for="date" >選擇健檢日期：</label>
+        <input type="date" id="date" name="date">
+        <input type="submit" class="bt1" value="查詢">
+    </form>
+</div>
 
-<table border="1">
+<table border="1"> 
     <tr>
         <th>預約日期</th>
         <th>預約項目</th>
@@ -46,18 +47,30 @@
 
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST["date"])) {
-        // 連接到資料庫
-        $serverName = "DESKTOP-947P2F9";
+        // 設定連線至資料庫的伺服器名稱和埠號
+        $serverName = "SHERRYCHOU";
+
+        // 設定連線選項，包括資料庫名稱、使用者名稱和密碼
         $connectionOptions = array(
             "Database" => "health_system", // 資料庫名稱
             "Uid" => "sa", // 使用者名稱
-            "PWD" => "1106Evelyn", // 密碼
+            "PWD" => "Sherry920710", // 密碼
             "CharacterSet" => "UTF-8"
         );
+
         $conn = sqlsrv_connect($serverName, $connectionOptions);
 
         // 查詢預約資料並以表格形式顯示
-        $sql = "SELECT  ChineseName, EnglishName, IDNumber, Sexual, Birthdate, Address, ResidenceAddress, Phone, Email, Wedding ,Package_id, ReservationDate 
+        $sql = "SELECT ChineseName, EnglishName, IDNumber, Sexual, Birthdate, Address, ResidenceAddress, Phone, Email, Wedding, CASE 
+                    WHEN Package_id = 1 THEN '卓越C套餐'
+                    WHEN Package_id = 2 THEN '卓越M套餐'
+                    WHEN Package_id = 3 THEN '尊爵A套餐'
+                    WHEN Package_id = 4 THEN '尊爵B套餐'
+                    WHEN Package_id = 5 THEN '尊爵C套餐'
+                    WHEN Package_id = 6 THEN '尊爵D套餐'
+                    ELSE '未選擇'
+                END AS Package_name, 
+                ReservationDate 
                 FROM Patient 
                 WHERE CONVERT(date, ReservationDate) = ?";
 
@@ -71,7 +84,7 @@
             while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
                 echo "<tr>";
                 echo "<td>" . ($row['ReservationDate'] ? $row['ReservationDate']->format('Y-m-d') : '') . "</td>"; //先確認是否為空值
-                echo "<td>" . $row['Package_id'] . "</td>";              
+                echo "<td>" . $row['Package_name'] . "</td>";              
                 echo "<td>" . $row['ChineseName'] . "</td>";
                 echo "<td>" . $row['EnglishName'] . "</td>";
                 echo "<td>" . $row['IDNumber'] . "</td>";
