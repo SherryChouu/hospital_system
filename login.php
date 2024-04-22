@@ -15,7 +15,7 @@
         <input type="text" id="username" name="username" required><br><br>
         <label for="password">密碼：</label>
         <input type="password" id="password" name="password" required><br><br>
-        <input type="submit" value="登入">
+        <input class="login-button" type="submit" value="登入">
     </form>
 </div>
 

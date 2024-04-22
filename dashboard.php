@@ -14,7 +14,7 @@
             <h1 class= "title"><a href="index.php">後台管理系統</a></h1>
     <nav>
             <ul class="flex-nav">
-                <li><a href="">預約名單</a></li>
+                <li><a href="">健檢預約名單</a></li>
                 <li><a href="revise.php">預約資料修改</a></li>
             </ul>
         </div>
@@ -54,7 +54,7 @@
         $conn = sqlsrv_connect($serverName, $connectionOptions);
 
         // 查詢預約資料並以表格形式顯示
-        $sql = "SELECT Package_id, ReservationDate, ChineseName, EnglishName, IDNumber, Sexual, Birthdate, Address, ResidenceAddress, Phone, Email, Wedding  FROM Patient";
+        $sql = "SELECT ReservationDate, Package_id,  ChineseName, EnglishName, IDNumber, Sexual, Birthdate, Address, ResidenceAddress, Phone, Email, Wedding  FROM Patient";
         $result = sqlsrv_query($conn, $sql);
 
         if ($result === false) {
@@ -63,8 +63,8 @@
             // 遍歷結果集，顯示每一筆預約資料
             while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
                 echo "<tr>";
-                echo "<td>" . $row['Package_id'] . "</td>";
-                echo "<td>" . $row['ReservationDate'] . "</td>";
+                echo "<td>" . ($row['ReservationDate'] ? $row['ReservationDate']->format('Y-m-d') : '') . "</td>"; //先確認是否為空值
+                echo "<td>" . $row['Package_id'] . "</td>";              
                 echo "<td>" . $row['ChineseName'] . "</td>";
                 echo "<td>" . $row['EnglishName'] . "</td>";
                 echo "<td>" . $row['IDNumber'] . "</td>";
