@@ -69,6 +69,7 @@
         <th>出生日期</th>
         <th>飲食習慣</th>
         <th>狀態</th>
+        <th>Action</th>
     </tr>
 
     <?php
@@ -172,7 +173,9 @@
                         echo "<td>" . ($row['Birthdate'] ? $row['Birthdate']->format('Y-m-d') : '') . "</td>";
                         echo "<td>" . $row['dietary_habits'] . "</td>";
                         echo "<td>" . $row['appointment_status'] . "</td>";
+                        echo "<td><button class='edit-button' onclick='editAppointment()'>編輯</button></td>"; 
                         echo "</tr>";
+
                     }
                 }else{
                     echo "此篩選條件尚未有預約資料！";

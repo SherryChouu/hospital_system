@@ -173,3 +173,19 @@ label {
     align-items: center;
 }
 
+.edit-button {
+    padding: 8px 16px;
+    background-color: #80bae9;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.edit-button:hover {
+    background-color: #bdccd9;
+}
