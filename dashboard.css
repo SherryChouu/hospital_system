@@ -115,7 +115,7 @@ tr:hover {
 }
 
 form {
-    width: 1000px; /* 設定篩選框長度 */
+    width: 1150px; /* 設定篩選框長度 */
     padding: 10px; /* 設定篩選框寬度 */
     margin-top: 80px;
     margin-bottom: 20px; /*跟表格的距離 */
@@ -126,17 +126,18 @@ form {
 }
 
 input[type="date"],
-select[type="package"]{
-    width: 15%;
+select[type="package"],
+select[type="status"]{
+    width: 10%;
     padding: 8px;
-    margin: 1px 30px 1px 5px ;
+    margin: 1px 20px 1px 5px ;
     border: 1px solid #ccc;
     border-radius: 10px;
     box-sizing: border-box; /* 使元素的寬度包含內邊距和邊框，而不包含外邊距 */
 }
 
 input[type="text"]{
-    width: 20%;
+    width: 15%;
     padding: 8px;
     margin: 1px 20px 1px 5px ;
     border: 1px solid #ccc;
@@ -146,7 +147,7 @@ input[type="text"]{
 
 
 input[type="submit"] {
-    width: 10%;
+    width: 8%;
     padding: 8px;
     margin: 1px 0;
     border: 1px solid #ccc;

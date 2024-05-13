@@ -40,6 +40,15 @@
             <option value="6">尊爵D套餐</option>
         </select>
 
+        <!--用狀態篩選名單-->
+        <label for="status" >依狀態查詢</label> 
+        <select type="status" id="status" name="status">
+            <option value="">全部</option>
+            <option value="1">待確認</option>
+            <option value="2">已確認</option>
+            <option value="3">已取消</option>
+        </select>
+
         <!--用身分證字號或姓名來篩選名單-->
         <label for="name"></label>
         <input type="text" id="keyword" name="keyword" placeholder="輸入姓名或身份證字號">
@@ -83,6 +92,8 @@
         $package = isset($_POST["package"]) ? $_POST["package"] : null;
         // 處理日期篩選
         $date = !empty($_POST["date"]) ? $_POST["date"] : null;
+        // 處理狀態篩選
+        $status = !empty($_POST["status"]) ? $_POST["status"] : null;
         // 處理姓名或身份證字號篩選
         $keyword = !empty($_POST["keyword"]) ? $_POST["keyword"] : null;
 
@@ -102,6 +113,7 @@
                 FROM Patient 
                 WHERE 1 = 1";
 
+
         // 添加套餐名稱篩選條件
         if (!empty($package)) {
             $sql .= " AND Package_id = ?";
@@ -110,6 +122,11 @@
         // 添加日期篩選條件
         if (!empty($date)) {
             $sql .= " AND CONVERT(date, ReservationDate) = ?";
+        }
+
+        // 添加狀態篩選條件
+        if (!empty($status)) {
+            $sql .= " AND appointment_status = ?";
         }
 
         // 添加姓名或身份證字號篩選條件
@@ -124,6 +141,9 @@
         }
         if (!empty($date)) {
             $params[] = $date;
+        }
+        if (!empty($status)) {
+            $params[] = $status;
         }
         if (!empty($keyword)) {
             $params[] = "%$keyword%";
