@@ -43,16 +43,15 @@
         <!--用狀態篩選名單-->
         <label for="status" >依狀態查詢</label> 
         <select type="status" id="status" name="status">
-            <option value="">全部</option>
-            <option value="1">待確認</option>
-            <option value="2">已確認</option>
-            <option value="3">已取消</option>
+        <option value="">全部</option>
+        <option value="已確認">已確認</option>
+        <option value="已取消">已取消</option>
+        <option value="待確認">待確認</option>
         </select>
 
         <!--用身分證字號或姓名來篩選名單-->
         <label for="name"></label>
         <input type="text" id="keyword" name="keyword" placeholder="輸入姓名或身份證字號">
-
         <input type="submit" name="submit" class="bt1" value="查詢">
 
     </form>
