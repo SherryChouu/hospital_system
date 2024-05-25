@@ -1,71 +1,20 @@
-/*----------------------------導覽列-----------------------------*/
 /*導覽列樣式*/
-.navbar {
+.nav {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     background-color: #a1c6e4;
-    margin: 0; 
     color: white;
     height: 60px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000; 
-}
-
-/* 醫院Logo樣式 */
-.logo img {
-    display: block;
-    max-width: 100px;  /* 最大寬度 */
-    height: auto;    /* 保持高度比例 */
-    border: none;    /* 移除圖片邊框 */
-    margin: 0%;
-    padding: 0;
-    margin-left: 40px;  /*增加左邊距讓logo往右移*/
-}
-
-/*導覽列鏈接的樣式*/
-nav a {
-    color: inherit;   /* 移除超連結顏色 */
-    display: block;   /* 讓 <a> 填滿 <li> */
-    padding: 15px;    /*滑鼠過去的方框大小*/
-    color: white;
-    font-size: 20px;  /*導覽列列表字體*/
-    text-decoration:none;  /* 移除超連結底線 */
-}
-
-/* 滑鼠移到 `<a>` 時變成深底淺色 */
-ul a:hover {
-    background-color: #e2e5e8;
-    color: black;
-}
-
-/*導覽列表樣式*/
-nav ul {
-    list-style: none;
-    background-color: #a1c6e4;
-    margin: 0;
-    padding:0;
-    border: 0;
-    height: 60px;
-    align-items: center;
-}
-
-/*導覽列靠右邊*/
-.flex-nav {
-    display: flex;
-    justify-content:flex-end; 
+    width: 100%;   
 }
 
 /*標題*/
-/*待解決：文字會跑 但用 position:fixed 微怪*/
 .title a {
     font-family: "cwTeXYen", serif;
     color:#fff;
-    font-size:26px;
+    font-size:24px;
     margin-left:50px;
+    margin-top: 30px;
     letter-spacing: 2px;
     text-decoration: none;
 }
@@ -114,10 +63,11 @@ tr:hover {
     justify-content: center;
 }
 
-form {
+
+.choose-container .form1 {
     width: 1150px; /* 設定篩選框長度 */
     padding: 10px; /* 設定篩選框寬度 */
-    margin-top: 80px;
+    margin-top: 32px;
     margin-bottom: 20px; /*跟表格的距離 */
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -134,6 +84,7 @@ select[type="status"]{
     border: 1px solid #ccc;
     border-radius: 10px;
     box-sizing: border-box; /* 使元素的寬度包含內邊距和邊框，而不包含外邊距 */
+    font-size: 14px;
 }
 
 input[type="text"]{
@@ -143,6 +94,7 @@ input[type="text"]{
     border: 1px solid #ccc;
     border-radius: 10px;
     box-sizing: border-box; /* 使元素的寬度包含內邊距和邊框，而不包含外邊距 */
+    font-size: 14px;
 }
 
 
@@ -188,4 +140,78 @@ label {
 
 .edit-button:hover {
     background-color: #bdccd9;
+}
+
+
+/* 模態框整個的位置和樣式 */
+.modal-dialog {
+    max-width: 600px; /* 限制模態框的最大寬度 */
+    margin: 60px auto; /* 垂直和水平居中 */
+}
+.modal-content {
+    border-radius: 30px; /* 整個框的圓角 */
+    box-shadow: 0 5px 15px rgba(0,0,0,.5); /* 陰影 */
+}
+/* 調整模態框標題的樣式 */
+.modal-header {
+    background-color: #9b9fa2; /* 標題背景顏色 */
+    color: #fff; /* 標題文字顏色 */
+}
+/* 調整關閉按鈕的樣式 */
+.modal-header .close {
+    color: #fff; /* 關閉按鈕文字顏色 */
+}
+/* 調整模態框內容的樣式 */
+.modal-body {
+    max-height: 70vh; /* 設置模態框內容的最大高度 */
+    overflow-y: auto; /* 如果內容超出，則顯示垂直滾動條 */
+    padding: 20px; /* 內容的內邊距 */
+    word-wrap: break-word; /* 允許單詞換行 */
+    text-align: left; /* 文字左對齊 */
+}
+/* 調整表單的樣式 */
+.modal-body .edit-group {
+    margin-bottom: 15px; /* 表單組之間的間距 */
+    max-width: 80%; /* 設置表單組的最大寬度 */
+    margin-left: auto;
+    margin-right: auto; /* 讓表單組居中 */
+}
+/* 調整表單控件的樣式 */
+.modal-body {
+    display: block; /* 讓表單控件成為塊級元素，以佔據整個寬度 */
+    width: 100%; /* 設置表單控件的寬度為父元素的寬度 */
+    padding: 20px 12px; /* 設置表單控件的內邊距 */
+    font-size: 16px; /* 設置表單控件的字體大小 */
+    line-height: 1.5; /* 設置表單控件的行高 */
+    color: #495057; /* 設置表單控件的文字顏色 */
+    background-color: #ffffff; /* 設置表單控件的背景顏色 */
+    background-clip: padding-box; /* 設置背景顏色僅在填充框內可見 */
+    border: 1px solid #ced4da; /* 設置表單控件的邊框 */
+    border-radius: 4px; /* 設置表單控件的圓角 */
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out; /* 定義過渡效果 */
+}
+/* 當鼠標懸停在表單控件上時 */
+.modal-body .form-control:hover {
+    border-color: #80bdff; /* 設置表單控件的邊框顏色 */
+}
+/* 當表單控件得到焦點時 */
+.modal-body .form-control:focus {
+    border-color: #80bae9; /* 設置表單控件的焦點時的邊框顏色 */
+    outline: 0; /* 隱藏表單控件的焦點輪廓 */
+    box-shadow: 0 0 0 4px rgba(0,123,255,.25); /* 添加焦點時的陰影效果 */
+}
+/* 調整按鈕的樣式 */
+.modal-body button[type="submit"] {
+    background-color: #80bae9; /* 按鈕背景顏色 */
+    color: #fff; /* 按鈕文字顏色 */
+    border: none; /* 移除按鈕邊框 */
+    border-radius: 10px; /* 按鈕圓角 */
+    padding: 8px 16px; /* 按鈕內邊距 */
+    margin: 0 auto;
+    display: block;
+    cursor: pointer; /* 鼠標指針 */
+}
+/* 當鼠標懸停在按鈕上時 */
+.modal-body button[type="submit"]:hover {
+    background-color: #0056b3; /* 按鈕背景顏色 */
 }
