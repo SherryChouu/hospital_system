@@ -150,7 +150,7 @@
                     echo "查詢預約資料失敗: " . print_r(sqlsrv_errors(), true);
                 } else {
                 if (sqlsrv_has_rows($result)) {
-                echo "查詢成功";
+                //echo "查詢成功";
 
                     // 遍歷結果集，顯示每一筆預約資料
                     while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
@@ -165,13 +165,14 @@
                         echo "<td>" . $row['dietary_habits'] . "</td>";
                         echo "<td>" . $row['appointment_status'] . "</td>";
                         echo "<td>";
-                        echo "<button class='edit-button' onclick=\"openEditModal('{$row['ChineseName']}', '{$row['EnglishName']}', '{$row['IDNumber']}', '{$row['Sexual']}', '{$row['Birthdate']->format('Y-m-d')}', '{$row['dietary_habits']}', '{$row['appointment_status']}', '{$row['Package_name']}')\">編輯</button>";
+                        //echo "<button class='edit-button' onclick=\"openEditModal('{$row['ChineseName']}', '{$row['EnglishName']}', '{$row['IDNumber']}', '{$row['Sexual']}', '{$row['Birthdate']->format('Y-m-d')}', '{$row['dietary_habits']}', '{$row['appointment_status']}', '{$row['Package_name']}')\">編輯</button>";
+                        echo "<button class='edit-button' onclick=\"openEditModal('{$row['ChineseName']}', '{$row['EnglishName']}', '{$row['IDNumber']}', '{$row['Sexual']}', '{$row['Birthdate']->format('Y-m-d')}', '{$row['dietary_habits']}', '{$row['appointment_status']}', '{$row['Package_name']}', '{$row['IDNumber']}')\">編輯</button>";
                         echo "</td>";
                         echo "</tr>";
 
                     }
                 }else{
-                    echo "此篩選條件尚未有預約資料！";
+                    //echo "此篩選條件尚未有預約資料！";
                     }
                 }
 
@@ -192,41 +193,56 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="form2" id="editForm" action="update.php" method="post">
-                        <input type="hidden" id="patient_id" name="patient_id">
+                    <form id="editForm" method="post">
+
                         <div class="edit-group">
                             <label for="chinese_name">中文姓名</label>
-                            <input type="text1" class="form-control" id="chinese_name" name="chinese_name">
+                            <input type="text" class="form-control" id="chinese_name" name="chinese_name">
                         </div>
                         <div class="edit-group">
                             <label for="english_name">英文姓名</label>
-                            <input type="text1" class="form-control" id="english_name" name="english_name">
+                            <input type="text" class="form-control" id="english_name" name="english_name">
                         </div>
                         <div class="edit-group">
                             <label for="id_number">身份證字號</label>
-                            <input type="text1" class="form-control" id="id_number" name="id_number">
+                            <input type="text" class="form-control" id="id_number" name="id_number">
                         </div>
                         <div class="edit-group">
                             <label for="sexual">生理性別</label>
-                            <input type="text1" class="form-control" id="sexual" name="sexual">
+                            <input type="text" class="form-control" id="sexual" name="sexual">
                         </div>
                         <div class="edit-group">
                             <label for="birthdate">出生日期</label>
-                            <input type="date1" class="form-control" id="birthdate" name="birthdate">
+                            <input type="date" class="form-control" id="birthdate" name="birthdate">
                         </div>
                         <div class="edit-group">
                             <label for="dietary_habits">飲食習慣</label>
-                            <input type="text1" class="form-control" id="dietary_habits" name="dietary_habits">
+                            <select type="dietary" class="form-control" id="dietary_habits" name="dietary_habits">
+                            <option value="葷">葷</option>
+                            <option value="素">素</option>
+                            </select>
                         </div>
                         <div class="edit-group">
                             <label for="appointment_status">狀態</label>
-                            <input type="text1" class="form-control" id="appointment_status" name="appointment_status">
+                            <select type="status" class="form-control" id="appointment_status" name="appointment_status">
+                            <option value="">全部</option>
+                            <option value="已確認">已確認</option>
+                            <option value="已取消">已取消</option>
+                            <option value="待確認">待確認</option>
+                            </select>
                         </div>
                         <div class="edit-group">
                             <label for="package_name">預約項目</label>
-                            <input type="text1" class="form-control" id="package_name" name="package_name">
+                            <select type="package_name" class="form-control" id="package_name" name="package_name">
+                            <option value="1">卓越C套餐</option>
+                            <option value="2">卓越M套餐</option>
+                            <option value="3">尊爵A套餐</option>
+                            <option value="4">尊爵B套餐</option>
+                            <option value="5">尊爵C套餐</option>
+                            <option value="6">尊爵D套餐</option>
+                            </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">保存</button>
+                        <button type="button" class="btn btn-primary" id="saveButton">儲存</button>
                     </form>
                 </div>
             </div>
@@ -234,27 +250,49 @@
     </div>
 
     <!-- 引入Bootstrap的JavaScript依賴 -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script> <!--Popper.js 用於管理彈出框（如工具提示和彈出菜單）-->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+
     <script>
-          function openEditModal(ChineseName, EnglishName, IDNumber, Sexual, Birthdate, dietary_habits, appointment_status, Package_name, ReservationDate) {
-            // 填充模態對話框中的表單字段
-            document.getElementById('chinese_name').value = ChineseName;
-            document.getElementById('english_name').value = EnglishName;
-            document.getElementById('id_number').value = IDNumber;
-            document.getElementById('sexual').value = Sexual;
-            document.getElementById('birthdate').value = Birthdate;
-            document.getElementById('dietary_habits').value = dietary_habits;
-            document.getElementById('appointment_status').value =appointment_status;
-            document.getElementById('package_name').value = Package_name;
-            //document.getElementById('reservation_date').value = ReservationDate;
-            
-            // 顯示模態對話框
-            $('#editModal').modal('show');
+    function openEditModal(ChineseName, EnglishName, IDNumber, Sexual, Birthdate, dietary_habits, appointment_status, Package_name, patient_id) {
+    // 填充模態框中的表單字段
+    document.getElementById('chinese_name').value = ChineseName;
+    document.getElementById('english_name').value = EnglishName;
+    document.getElementById('id_number').value = IDNumber;
+    document.getElementById('sexual').value = Sexual;
+    document.getElementById('birthdate').value = Birthdate;
+    document.getElementById('dietary_habits').value = dietary_habits;
+    document.getElementById('appointment_status').value = appointment_status;
+    document.getElementById('package_name').value = Package_name;
+
+    // 顯示模態框
+    $('#editModal').modal('show');
     }
     
+    
+
+    $(document).ready(function(){
+        $('#saveButton').on('click', function(){
+            var formData = $('#editForm').serialize(); 
+            $.ajax({
+                type: 'POST',
+                url: 'update.php',
+                data: formData,
+                success: function(response) {
+                    alert('保存成功!');
+                    $('#editModal').modal('hide');
+                    location.reload(); // 重新加載頁面以顯示更新後的資料
+                },
+                error: function() {
+                    alert('儲存失敗，請重試!');
+                }
+            });
+        });
+    });
     </script>
+
+
 </body>
 </html>

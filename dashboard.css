@@ -27,6 +27,7 @@ table {
     align-items: center;
     text-align: center; /* 表格內文字置中 */
     margin: auto; /* 表格置中 */
+    margin-bottom: 20px;
 }
 
 /* 表頭樣式 */
@@ -75,9 +76,9 @@ tr:hover {
     text-align: center;
 }
 
-input[type="date"],
-select[type="package"],
-select[type="status"]{
+#date,
+#package,
+#status{
     width: 10%;
     padding: 8px;
     margin: 1px 20px 1px 5px ;
@@ -87,7 +88,7 @@ select[type="status"]{
     font-size: 14px;
 }
 
-input[type="text"]{
+#keyword{
     width: 15%;
     padding: 8px;
     margin: 1px 20px 1px 5px ;
@@ -98,20 +99,18 @@ input[type="text"]{
 }
 
 
-input[type="submit"] {
-    width: 8%;
-    padding: 8px;
-    margin: 1px 0;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-sizing: border-box; /* 使元素的寬度包含內邊距和邊框，而不包含外邊距 */
-}
-
 .bt1 {
     background-color:  #a1c6e4;
     color: white;
     cursor: pointer;
     transition: background-color 0.3s;
+    width: 8%;
+    padding: 6px;
+    margin: 1px 0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box; /* 使元素的寬度包含內邊距和邊框，而不包含外邊距 */
+
 }
 
 .bt1:hover{
@@ -141,7 +140,6 @@ label {
 .edit-button:hover {
     background-color: #bdccd9;
 }
-
 
 /* 模態框整個的位置和樣式 */
 .modal-dialog {
@@ -201,7 +199,7 @@ label {
     box-shadow: 0 0 0 4px rgba(0,123,255,.25); /* 添加焦點時的陰影效果 */
 }
 /* 調整按鈕的樣式 */
-.modal-body button[type="submit"] {
+#saveButton{
     background-color: #80bae9; /* 按鈕背景顏色 */
     color: #fff; /* 按鈕文字顏色 */
     border: none; /* 移除按鈕邊框 */
@@ -212,6 +210,6 @@ label {
     cursor: pointer; /* 鼠標指針 */
 }
 /* 當鼠標懸停在按鈕上時 */
-.modal-body button[type="submit"]:hover {
+#saveButton:hover {
     background-color: #0056b3; /* 按鈕背景顏色 */
 }
